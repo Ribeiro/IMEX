@@ -4,10 +4,10 @@ import java.util.List;
 
 import br.com.gribeiro.imex.process.Request;
 
-public class NodeHandler extends Handler {
+public class StepHandler extends Handler {
 	private List<Handler> stepHandlers;
 
-	public NodeHandler(Integer id, String name, String description, List<Handler> stepHandlers) {
+	public StepHandler(Integer id, String name, String description, List<Handler> stepHandlers) {
 		super(id, name, description);
 		this.stepHandlers = stepHandlers;
 	}
