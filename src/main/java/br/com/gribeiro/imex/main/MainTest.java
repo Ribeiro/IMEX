@@ -1,33 +1,27 @@
 package br.com.gribeiro.imex.main;
 
 import java.util.Arrays;
-import java.util.List;
-import br.com.gribeiro.imex.chain.MacroHandler;
-import br.com.gribeiro.imex.chain.MicroHandler;
-import br.com.gribeiro.imex.chain.MicroHandlerA;
-import br.com.gribeiro.imex.chain.MicroHandlerB;
-import br.com.gribeiro.imex.chain.MicroHandlerC;
+import br.com.gribeiro.imex.chainTwo.handler.Handler;
+import br.com.gribeiro.imex.chainTwo.handler.NodeHandler;
+import br.com.gribeiro.imex.chainTwo.handler.StepHandlerOne;
+import br.com.gribeiro.imex.chainTwo.handler.StepHandlerTwo;
 import br.com.gribeiro.imex.process.ImportRequest;
 import br.com.gribeiro.imex.process.Request;
+
 
 public class MainTest {
 	
 	public static void main(String[] args) {
-		MicroHandler microHandlerA = new MicroHandlerA(1, "MicroHandlerA");
-		MicroHandler microHandlerB = new MicroHandlerB(2, "MicroHandlerB");
-		MicroHandler microHandlerC = new MicroHandlerC(3, "MicroHandlerC");
+		Handler firstStepHandler = new StepHandlerOne(1, "stepOneHandler", "Handler for Step One");
+		Handler secondStepHandler = new StepHandlerTwo(2, "stepTwoHandler", "Handler for Step Two");
 		
-		MacroHandler firstMacroHandler = new MacroHandler(1, "firstMacroHandler", Arrays.asList((MicroHandler) microHandlerA));
-		MacroHandler secondMacroHandler = new MacroHandler(2, "secondMacroHandler",Arrays.asList((MicroHandler) microHandlerB));
-		MacroHandler thirdMacroHandler = new MacroHandler(3, "thirdMacroHandler",Arrays.asList((MicroHandler) microHandlerA , (MicroHandler) microHandlerC));
+		Handler firstNodeHandler = new NodeHandler(3, "firstNodeHandler", "Handler for Node One", Arrays.asList(firstStepHandler));
+		Handler secondNodeHandler = new NodeHandler(4, "secondNodeHandler", "Handler for Node Two", Arrays.asList(secondStepHandler));
 		
+		firstNodeHandler.setSuccessor(secondNodeHandler);
 		
-		List<MacroHandler> macroHandlers = Arrays.asList(firstMacroHandler, secondMacroHandler, thirdMacroHandler);
 		Request request = new ImportRequest();
-		
-		for (MacroHandler macroHandler : macroHandlers) {
-			macroHandler.handle(request);
-		}
+		firstNodeHandler.handle(request);
 		
 	}
 
