@@ -4,7 +4,10 @@ import br.com.gribeiro.imex.process.Request;
 
 public class MicroHandlerB extends MicroHandler {
 
-	@Override
+	public MicroHandlerB(Integer id, String name) {
+		super(id, name);
+	}
+
 	public Request handle(Request request) {
 		System.out.println("Called MicroHandlerB ...");
 		return null;

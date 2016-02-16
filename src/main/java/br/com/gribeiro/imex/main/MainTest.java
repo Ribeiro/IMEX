@@ -13,9 +13,13 @@ import br.com.gribeiro.imex.process.Request;
 public class MainTest {
 	
 	public static void main(String[] args) {
-		MacroHandler firstMacroHandler = new MacroHandler(1, "firstMacroHandler", Arrays.asList((MicroHandler)new MicroHandlerA()));
-		MacroHandler secondMacroHandler = new MacroHandler(2, "secondMacroHandler",Arrays.asList((MicroHandler)new MicroHandlerB()));
-		MacroHandler thirdMacroHandler = new MacroHandler(3, "thirdMacroHandler",Arrays.asList((MicroHandler)new MicroHandlerA() , (MicroHandler)new MicroHandlerC()));
+		MicroHandler microHandlerA = new MicroHandlerA(1, "MicroHandlerA");
+		MicroHandler microHandlerB = new MicroHandlerB(2, "MicroHandlerB");
+		MicroHandler microHandlerC = new MicroHandlerC(3, "MicroHandlerC");
+		
+		MacroHandler firstMacroHandler = new MacroHandler(1, "firstMacroHandler", Arrays.asList((MicroHandler) microHandlerA));
+		MacroHandler secondMacroHandler = new MacroHandler(2, "secondMacroHandler",Arrays.asList((MicroHandler) microHandlerB));
+		MacroHandler thirdMacroHandler = new MacroHandler(3, "thirdMacroHandler",Arrays.asList((MicroHandler) microHandlerA , (MicroHandler) microHandlerC));
 		
 		
 		List<MacroHandler> macroHandlers = Arrays.asList(firstMacroHandler, secondMacroHandler, thirdMacroHandler);

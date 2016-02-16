@@ -4,6 +4,6 @@ import br.com.gribeiro.imex.process.Request;
 
 public abstract class AbstractHandler {
 	
-	public abstract Request handle(Request request);
-	
+	protected abstract Request handle(Request request);
+
 }
